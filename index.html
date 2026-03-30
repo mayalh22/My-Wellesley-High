@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>My Wellesley High</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Lato',sans-serif;background:#f8fafc;color:#1a1a1a;min-height:100vh}
+a{color:#1a6b3c;text-decoration:none}
+a:hover{color:#145730;text-decoration:underline}
+a:active{color:#0e3d22}
+
+nav{background:#990000;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:54px;position:sticky;top:0;z-index:100}
+.nav-logo{color:#fff;font-size:16px;font-weight:900;letter-spacing:0.01em}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.75);font-size:13px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;text-decoration:none;transition:color 0.15s}
+.nav-links a:hover{color:#fff}
+.nav-btn{background:#fff;color:#990000;border:none;padding:7px 18px;font-family:'Lato',sans-serif;font-weight:700;font-size:13px;cursor:pointer;transition:background 0.15s}
+.nav-btn:hover{background:#f0e6e6}
+.nav-btn:active{background:#e0cccc}
+
+.hero{background:#990000;padding:3.5rem 2.5rem 4rem;text-align:center}
+.hero h1{color:#fff;font-size:40px;font-weight:900;letter-spacing:-0.02em;margin-bottom:0.6rem}
+.hero p{color:rgba(255,255,255,0.75);font-size:16px;max-width:480px;margin:0 auto 2rem;line-height:1.65}
+.hero-btn{display:inline-block;background:#fff;color:#990000;font-family:'Lato',sans-serif;font-weight:700;font-size:14px;padding:11px 30px;cursor:pointer;border:none;transition:background 0.15s}
+.hero-btn:hover{background:#f0e6e6;color:#990000;text-decoration:none}
+.hero-btn:active{background:#e0cccc}
+.hero-sub{color:rgba(255,255,255,0.45);font-size:12px;margin-top:0.65rem}
+
+.container{max-width:1060px;margin:0 auto;padding:0 2.5rem}
+.section{padding:2.75rem 0}
+.section-label{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#990000;margin-bottom:1.25rem;padding-bottom:0.4rem;border-bottom:2px solid #990000;display:inline-block}
+
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+.card{background:#fff;border:1px solid #e2e8f0;padding:1.25rem;transition:border-color 0.15s}
+.card:hover{border-color:#c5cfd9}
+.card h3{font-size:14px;font-weight:700;margin-bottom:0.35rem}
+.card p{font-size:13px;color:#64748b;line-height:1.55}
+.s3{grid-column:span 3}
+.s4{grid-column:span 4}
+.s6{grid-column:span 6}
+.s8{grid-column:span 8}
+.s12{grid-column:span 12}
+
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:0.04em;padding:2px 8px;margin-bottom:0.6rem}
+.tag.live{background:#e8f5e9;color:#1a6b3c;border:1px solid #b2dfdb}
+.tag.soon{background:#fce8e8;color:#7a0000;border:1px solid #f5c0c0}
+.tag.planned{background:#f1f5f9;color:#475569;border:1px solid #dde3ea}
+
+.tabs{display:flex;border-bottom:2px solid #990000;margin-bottom:1.5rem}
+.tab{padding:8px 20px;font-size:13px;font-weight:700;letter-spacing:0.03em;cursor:pointer;border:none;background:none;font-family:'Lato',sans-serif;color:#64748b;transition:color 0.15s;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab.active{color:#990000;border-bottom:3px solid #990000}
+.tab:hover{color:#990000}
+
+.auth-box{max-width:360px;background:#fff;border:1px solid #e2e8f0;padding:2rem;margin:0 auto}
+.auth-box h2{font-size:17px;font-weight:900;margin-bottom:0.25rem}
+.auth-box p{font-size:13px;color:#64748b;line-height:1.55;margin-bottom:1.25rem}
+.auth-notice{font-size:12px;color:#64748b;background:#f8fafc;border:1px solid #e2e8f0;padding:0.65rem 0.85rem;line-height:1.55;margin-bottom:1.25rem}
+.auth-notice strong{color:#990000}
+.google-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:10px;border:1px solid #e2e8f0;background:#fff;font-family:'Lato',sans-serif;font-size:14px;font-weight:700;cursor:not-allowed;color:#1a1a1a;opacity:0.5}
+.auth-fine{font-size:11px;color:#94a3b8;text-align:center;margin-top:0.65rem;line-height:1.5}
+
+input[type=text],input:not([type]),input[type=search]{border:1px solid #e2e8f0;padding:9px 12px;font-family:'Lato',sans-serif;font-size:14px;outline:none;transition:border-color 0.15s}
+input[type=text]:focus,input:not([type]):focus{border-color:#990000}
+select{border:1px solid #e2e8f0;padding:7px;font-family:'Lato',sans-serif;font-size:13px;outline:none;background:#fff}
+
+.data-table{width:100%;border-collapse:collapse;font-size:13px}
+.data-table th{text-align:left;padding:8px 12px;font-weight:700;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#64748b;border-bottom:2px solid #e2e8f0}
+.data-table td{padding:9px 12px;border-bottom:1px solid #f1f5f9;color:#374151}
+.data-table tr:hover td{background:#f8fafc}
+.dept{display:inline-block;font-size:11px;padding:2px 8px;background:#f1f5f9;color:#475569;font-weight:700}
+
+.qa-item{border-bottom:1px solid #f1f5f9;padding:1rem 0}
+.qa-item:first-child{padding-top:0}
+.qa-q{font-weight:700;font-size:14px;margin-bottom:4px;color:#1a1a1a}
+.qa-meta{font-size:12px;color:#94a3b8}
+.qa-votes{color:#990000;font-weight:700}
+
+.ai-box{border:1px solid #e2e8f0;background:#fff}
+.ai-bar{background:#990000;padding:0.7rem 1.2rem;display:flex;align-items:center;justify-content:space-between}
+.ai-bar span{color:#fff;font-weight:700;font-size:13px;letter-spacing:0.04em}
+.ai-bar small{color:rgba(255,255,255,0.6);font-size:12px}
+.ai-body{padding:1.2rem}
+.ai-msg{font-size:13px;line-height:1.6;color:#374151;background:#f8fafc;padding:0.75rem;margin-bottom:1rem;border-left:3px solid #990000}
+.ai-row{display:flex;gap:8px}
+.ai-row input{flex:1}
+.ai-send{background:#990000;color:#fff;border:none;padding:9px 16px;font-family:'Lato',sans-serif;font-weight:700;font-size:13px;cursor:not-allowed;opacity:0.5}
+.ai-fine{font-size:11px;color:#94a3b8;margin-top:8px}
+
+.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+.dot-live{background:#1a6b3c}
+.dot-soon{background:#990000}
+.dot-planned{background:#cbd5e1}
+
+footer{background:#1a1a1a;color:#64748b;padding:2rem 2.5rem;text-align:center;font-size:12px;margin-top:3rem;line-height:1.8}
+footer strong{color:#fff}
+footer a{color:#64748b}
+footer a:hover{color:#94a3b8}
+
+@media(max-width:700px){
+  .bento{grid-template-columns:1fr 1fr}
+  .s3,.s4,.s6,.s8{grid-column:span 2}
+  .s12{grid-column:span 2}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">My Wellesley High</div>
+  <ul class="nav-links">
+    <li><a href="#dashboard">Dashboard</a></li>
+    <li><a href="#academics">Academics</a></li>
+    <li><a href="#life">Student Life</a></li>
+    <li><a href="#community">Community</a></li>
+  </ul>
+  <button class="nav-btn" onclick="document.getElementById('auth').scrollIntoView({behavior:'smooth'})">Sign In</button>
+</nav>
+
+<div class="hero">
+  <h1>Your school, organized.</h1>
+  <p>Schedules, teachers, clubs, and community tools for Wellesley High students. Sign in with your school account to get started.</p>
+  <button class="hero-btn" onclick="document.getElementById('auth').scrollIntoView({behavior:'smooth'})">Sign in with Google</button>
+  <div class="hero-sub">Wellesley Public Schools accounts only.</div>
+</div>
+
+<div class="container">
+
+<div class="section" id="auth">
+  <div class="section-label">Sign In</div>
+  <div class="auth-box">
+    <h2>Welcome</h2>
+    <p>Sign in with your school Google account. Outside accounts cannot access this site.</p>
+    <div class="auth-notice"><strong>Not live yet.</strong> Sign-in requires backend setup. When it launches, every post and action will be tied to your school account.</div>
+    <button class="google-btn" disabled>
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.2l6.7-6.7C35.7 2.5 30.2 0 24 0 14.6 0 6.6 5.5 2.7 13.5l7.8 6C12.4 13.3 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.6 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4 6.9-10 6.9-17z"/><path fill="#FBBC05" d="M10.5 28.5c-.5-1.5-.8-3.2-.8-4.9s.3-3.4.8-4.9l-7.8-6C1 15.8 0 19.8 0 24s1 8.2 2.7 11.3l7.8-6z"/><path fill="#34A853" d="M24 48c6.2 0 11.4-2 15.2-5.5l-7.5-5.8c-2 1.4-4.5 2.2-7.7 2.2-6.2 0-11.4-3.8-13.3-9.1l-7.8 6C6.6 42.5 14.6 48 24 48z"/></svg>
+      Continue with Google
+    </button>
+    <div class="auth-fine">@wellesleyps.org accounts only. Your email is attached to everything you post.</div>
+  </div>
+</div>
+
+<div class="section" id="dashboard">
+  <div class="section-label">Dashboard</div>
+  <div class="bento">
+
+    <div class="card s4">
+      <span class="tag soon">Not yet live</span>
+      <h3>Today's Schedule</h3>
+      <p>Your block periods, room numbers, current and next class. Needs schedule data from sign-in.</p>
+      <div style="margin-top:1rem;border:1px solid #f1f5f9;padding:0.75rem;text-align:center;font-size:12px;color:#cbd5e1">Loads after sign-in</div>
+    </div>
+
+    <div class="card s4">
+      <span class="tag live">Live</span>
+      <h3>Countdowns</h3>
+      <div id="countdowns" style="margin-top:0.75rem;display:flex;flex-direction:column;gap:10px"></div>
+    </div>
+
+    <div class="card s4">
+      <span class="tag planned">Planned</span>
+      <h3>Lunch</h3>
+      <p>Your lunch block and a simple way to see who else has the same one. Needs schedule import.</p>
+    </div>
+
+    <div class="card s8">
+      <span class="tag soon">Not yet live</span>
+      <h3>Announcements</h3>
+      <p style="margin-bottom:1rem">School news in one place. Needs a data source or admin partnership.</p>
+      <div style="display:flex;flex-direction:column;gap:1px">
+        <div style="padding:8px 0;border-bottom:1px solid #f8fafc;font-size:13px;color:#cbd5e1;font-style:italic">Spring play auditions</div>
+        <div style="padding:8px 0;border-bottom:1px solid #f8fafc;font-size:13px;color:#cbd5e1;font-style:italic">Finals schedule posted</div>
+        <div style="padding:8px 0;font-size:13px;color:#cbd5e1;font-style:italic">College counselor drop-in hours</div>
+      </div>
+    </div>
+
+    <div class="card s4">
+      <span class="tag planned">Planned</span>
+      <h3>Weather</h3>
+      <div style="font-size:32px;font-weight:900;color:#e2e8f0;margin:0.5rem 0">48°</div>
+      <p>Simple weather widget for Wellesley. Needs a free weather API.</p>
+    </div>
+
+  </div>
+</div>
+
+<div class="section" id="academics">
+  <div class="section-label">Academics</div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab(this,'teachers')">Teachers</button>
+    <button class="tab" onclick="switchTab(this,'courses')">Courses</button>
+    <button class="tab" onclick="switchTab(this,'tools')">Tools</button>
+  </div>
+
+  <div id="tab-teachers">
+    <div style="display:flex;gap:8px;margin-bottom:1rem;align-items:center">
+      <input placeholder="Search by name or department..." oninput="filterTeachers()" id="teacher-search" style="width:100%;max-width:400px"/>
+      <span style="font-size:12px;color:#94a3b8">Sample data</span>
+    </div>
+    <table class="data-table">
+      <thead><tr><th>Name</th><th>Department</th><th>Email</th><th>Room</th></tr></thead>
+      <tbody id="teacher-body"></tbody>
+    </table>
+    <p style="font-size:12px;color:#94a3b8;margin-top:0.75rem">Real directory needs data entry or school partnership. <a href="#">Help contribute.</a></p>
+  </div>
+
+  <div id="tab-courses" style="display:none">
+    <div class="bento" style="margin-top:0">
+      <div class="card s6"><span class="tag planned">Planned</span><h3>Course catalog</h3><p>All WHS courses with descriptions and prereqs, searchable by department or level. Data from the WHS course guide.</p></div>
+      <div class="card s6"><span class="tag planned">Planned</span><h3>Prereq map</h3><p>Visual map of what leads to what. Most useful for STEM tracks.</p></div>
+      <div class="card s6"><span class="tag planned">Planned</span><h3>Class connections</h3><p>See which friends share your classes, opt-in only. Needs auth.</p></div>
+      <div class="card s6"><span class="tag planned">Planned</span><h3>Summer reading</h3><p>Reading list by class with library and purchase links. Simple static page.</p></div>
+    </div>
+  </div>
+
+  <div id="tab-tools" style="display:none">
+    <div class="bento" style="margin-top:0">
+
+      <div class="card s6">
+        <span class="tag live">Live</span>
+        <h3 style="margin-bottom:1rem">GPA Calculator</h3>
+        <div id="gpa-rows" style="display:flex;flex-direction:column;gap:6px"></div>
+        <button onclick="addGPARow()" style="margin-top:8px;border:1px solid #f1f5f9;background:none;width:100%;padding:7px;font-family:'Lato',sans-serif;font-size:13px;color:#94a3b8;cursor:pointer;transition:all 0.15s" onmouseover="this.style.borderColor='#990000';this.style.color='#990000'" onmouseout="this.style.borderColor='#f1f5f9';this.style.color='#94a3b8'">+ Add course</button>
+        <div style="margin-top:1rem;padding:0.75rem;background:#f8fafc;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:13px;color:#64748b;font-weight:700">Unweighted GPA</span>
+          <span id="gpa-result" style="font-size:22px;font-weight:900;color:#990000">—</span>
+        </div>
+        <p style="font-size:11px;color:#94a3b8;margin-top:0.6rem">Unofficial. Verify with your counselor.</p>
+      </div>
+
+      <div class="card s6">
+        <span class="tag soon">Not yet live</span>
+        <h3>Who's my counselor?</h3>
+        <p style="margin-bottom:1rem">Enter your last name initial to see your assigned counselor's contact info and drop-in hours.</p>
+        <input placeholder="Last name initial..." style="width:100%" disabled/>
+        <p style="font-size:12px;color:#94a3b8;margin-top:0.6rem">Needs counselor assignment data.</p>
+      </div>
+
+      <div class="card s6"><span class="tag planned">Planned</span><h3>Graduation checklist</h3><p>Track your required credits by subject and mark off what you've completed. Needs WHS requirements data.</p></div>
+      <div class="card s6"><span class="tag planned">Planned</span><h3>NHS tutor directory</h3><p>Browse tutors by subject and contact via school email. NHS chapter would maintain the list.</p></div>
+
+    </div>
+  </div>
+</div>
+
+<div class="section" id="ai-section">
+  <div class="section-label">Homework Help</div>
+  <p style="font-size:13px;color:#64748b;margin-bottom:1.25rem">Not live yet. Each student gets a limited number of questions per day. The API key stays on the server — you never see it.</p>
+  <div class="bento">
+    <div class="card s8">
+      <span class="tag soon">Not yet live</span>
+      <h3 style="margin-bottom:1rem">Ask a question</h3>
+      <div class="ai-box">
+        <div class="ai-bar">
+          <span>Homework Helper</span>
+          <small>5 questions per day</small>
+        </div>
+        <div class="ai-body">
+          <div class="ai-msg">Ask me to explain a concept, look over your argument, or help you understand a teacher's feedback. I won't write your work for you.</div>
+          <div class="ai-row">
+            <input placeholder="Your question..." disabled/>
+            <button class="ai-send" disabled>Send</button>
+          </div>
+          <div class="ai-fine">Requires sign-in. Each request is logged to your account.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card s4" style="display:flex;flex-direction:column;gap:1rem">
+      <div><span class="tag soon">Not yet live</span><h3>Email teacher sick</h3><p>Enter your teachers and reason, get a ready-to-send absence email.</p></div>
+      <div style="border-top:1px solid #f1f5f9;padding-top:1rem"><span class="tag planned">Planned</span><h3>School Q&A bot</h3><p>Links to counselors, nurse, and handbook. Answers basic "how do I..." questions.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="life">
+  <div class="section-label">Student Life</div>
+  <div class="bento">
+    <div class="card s4">
+      <span class="tag planned">Planned</span>
+      <h3>Clubs</h3>
+      <p style="margin-bottom:1rem">Browse all WHS clubs with meeting times, advisors, and how to join.</p>
+      <div style="display:flex;flex-direction:column">
+        <div style="padding:8px 0;border-bottom:1px solid #f8fafc;font-size:13px;color:#cbd5e1;font-style:italic">Mock Trial</div>
+        <div style="padding:8px 0;border-bottom:1px solid #f8fafc;font-size:13px;color:#cbd5e1;font-style:italic">Key Club</div>
+        <div style="padding:8px 0;font-size:13px;color:#cbd5e1;font-style:italic">Model UN</div>
+      </div>
+    </div>
+    <div class="card s4"><span class="tag planned">Planned</span><h3>Events</h3><p>Games, dances, club meetings, and local events. Could pull from the school calendar or WHS Instagram.</p></div>
+    <div class="card s4"><span class="tag planned">Planned</span><h3>Polls</h3><p>Student voting tied to real accounts so results mean something. No double votes.</p></div>
+    <div class="card s6"><span class="tag planned">Planned</span><h3>Bus routes</h3><p>Searchable by address. Needs WPS transportation data or a PDF import. Most useful for freshmen.</p></div>
+    <div class="card s6"><span class="tag planned">Planned</span><h3>Nearby spots</h3><p>Student ratings for Dunkin, Café Nero, and other lunch spots. Simple upvote system, no outside API.</p></div>
+  </div>
+</div>
+
+<div class="section" id="community">
+  <div class="section-label">Community</div>
+  <div class="bento">
+
+    <div class="card s8">
+      <span class="tag soon">Not yet live</span>
+      <h3 style="margin-bottom:1rem">Q&A Board</h3>
+      <div class="qa-item">
+        <div class="qa-q">What do I do if I miss a test because I was sick?</div>
+        <div class="qa-meta"><span class="qa-votes">14 upvotes</span> · 3 days ago</div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q">Can you eat outside during free periods in the fall?</div>
+        <div class="qa-meta"><span class="qa-votes">9 upvotes</span> · 1 week ago</div>
+      </div>
+      <div class="qa-item" style="border-bottom:none">
+        <div class="qa-q">Who is the best math teacher for pre-calc honors?</div>
+        <div class="qa-meta"><span class="qa-votes">22 upvotes</span> · 2 weeks ago</div>
+      </div>
+      <button style="margin-top:1.25rem;background:#990000;color:#fff;border:none;padding:9px 18px;font-family:'Lato',sans-serif;font-weight:700;font-size:13px;cursor:not-allowed;opacity:0.4">Ask a question (sign in required)</button>
+    </div>
+
+    <div class="card s4" style="display:flex;flex-direction:column;gap:1rem">
+      <div><span class="tag planned">Planned</span><h3>Useful links</h3><p>Aspen, Naviance, the student handbook, school Instagram, PowerSchool. All in one place.</p></div>
+      <div style="border-top:1px solid #f1f5f9;padding-top:1rem"><span class="tag planned">Planned</span><h3>Resources</h3><p>Counselors, nurse, and mental health links. No sign-in required, always accessible.</p></div>
+      <div style="border-top:1px solid #f1f5f9;padding-top:1rem"><span class="tag planned">Planned</span><h3>Volunteer opportunities</h3><p>Community service postings from local organizations. Open submissions.</p></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Feature Status</div>
+  <div class="bento">
+    <div class="card s12">
+      <table class="data-table">
+        <thead><tr><th>Feature</th><th>Status</th><th>What it needs</th></tr></thead>
+        <tbody>
+          <tr><td>GPA calculator</td><td><span class="status-dot dot-live"></span>Live</td><td>Nothing</td></tr>
+          <tr><td>Countdown timers</td><td><span class="status-dot dot-live"></span>Live</td><td>Nothing</td></tr>
+          <tr><td>Teacher directory</td><td><span class="status-dot dot-live"></span>Live (sample data)</td><td>Real data from the school or students</td></tr>
+          <tr><td>Google sign-in</td><td><span class="status-dot dot-soon"></span>Not yet live</td><td>Supabase + Google OAuth setup</td></tr>
+          <tr><td>@wellesleyps.org restriction</td><td><span class="status-dot dot-soon"></span>Not yet live</td><td>Two-minute Supabase config once auth is built</td></tr>
+          <tr><td>Homework helper</td><td><span class="status-dot dot-soon"></span>Not yet live</td><td>API key (applying for education access)</td></tr>
+          <tr><td>Q&A board</td><td><span class="status-dot dot-soon"></span>Not yet live</td><td>Supabase database and auth</td></tr>
+          <tr><td>Announcements</td><td><span class="status-dot dot-soon"></span>Not yet live</td><td>Admin partnership or school site access</td></tr>
+          <tr><td>Schedule widget</td><td><span class="status-dot dot-planned"></span>Planned</td><td>Schedule import format and Supabase</td></tr>
+          <tr><td>Clubs, events, polls, bus routes</td><td><span class="status-dot dot-planned"></span>Planned</td><td>Supabase and data contributors</td></tr>
+          <tr><td>NHS tutor directory</td><td><span class="status-dot dot-planned"></span>Planned</td><td>NHS chapter to maintain the list</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<footer>
+  <strong>My Wellesley High</strong><br>
+  Built by WHS students. Not affiliated with or endorsed by Wellesley Public Schools. All data is unofficial.<br>
+  <a href="#">Feedback</a> · <a href="#">Contribute data</a>
+</footer>
+
+<script>
+function switchTab(el,name){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  ['teachers','courses','tools'].forEach(n=>{
+    var d=document.getElementById('tab-'+n);
+    if(d)d.style.display=n===name?'block':'none';
+  });
+}
+
+var events=[
+  {label:'End of school year',date:'2026-06-12'},
+  {label:'Memorial Day',date:'2026-05-25'},
+  {label:'Summer reading due',date:'2026-08-25'},
+];
+function renderCountdowns(){
+  var el=document.getElementById('countdowns'),now=new Date();
+  el.innerHTML=events.map(function(e){
+    var diff=Math.ceil((new Date(e.date)-now)/(864e5));
+    return '<div><div style="font-size:12px;color:#64748b">'+e.label+'</div><div style="font-size:24px;font-weight:900;color:#990000;line-height:1.1">'+diff+'<span style="font-size:13px;font-weight:400;color:#64748b"> days</span></div></div>';
+  }).join('');
+}
+renderCountdowns();
+
+var teachers=[
+  {name:'Ms. Anderson',dept:'English',email:'kanderson@wellesleyps.org',room:'214'},
+  {name:'Mr. Pereira',dept:'Mathematics',email:'jpereira@wellesleyps.org',room:'118'},
+  {name:'Dr. Okafor',dept:'Science',email:'aokafor@wellesleyps.org',room:'305'},
+  {name:'Ms. Chen',dept:'History',email:'lchen@wellesleyps.org',room:'220'},
+  {name:'Mr. Stafford',dept:'Art',email:'mstafford@wellesleyps.org',room:'G10'},
+  {name:'Ms. Vasquez',dept:'World Languages',email:'rvasquez@wellesleyps.org',room:'116'},
+  {name:'Mr. Kim',dept:'Mathematics',email:'dkim@wellesleyps.org',room:'120'},
+  {name:'Ms. Rivera',dept:'English',email:'srivera@wellesleyps.org',room:'216'},
+  {name:'Dr. Patel',dept:'Science',email:'npatel@wellesleyps.org',room:'310'},
+  {name:'Ms. Walsh',dept:'History',email:'ewalsh@wellesleyps.org',room:'222'},
+];
+function renderTeachers(list){
+  document.getElementById('teacher-body').innerHTML=list.map(function(t){
+    return '<tr><td style="font-weight:700">'+t.name+'</td><td><span class="dept">'+t.dept+'</span></td><td><a href="mailto:'+t.email+'">'+t.email+'</a></td><td>'+t.room+'</td></tr>';
+  }).join('');
+}
+renderTeachers(teachers);
+function filterTeachers(){
+  var q=document.getElementById('teacher-search').value.toLowerCase();
+  renderTeachers(teachers.filter(function(t){return t.name.toLowerCase().includes(q)||t.dept.toLowerCase().includes(q);}));
+}
+
+var gradeMap={'A':4,'A-':3.7,'B+':3.3,'B':3.0,'B-':2.7,'C+':2.3,'C':2.0,'C-':1.7,'D':1.0,'F':0};
+function addGPARow(){
+  var row=document.createElement('div');
+  row.style.cssText='display:flex;gap:6px;align-items:center';
+  row.innerHTML='<input placeholder="Course name" style="flex:1;font-size:13px;padding:7px 10px">'
+    +'<select onchange="calcGPA()" style="font-size:13px">'+Object.keys(gradeMap).map(function(g){return'<option>'+g+'</option>';}).join('')+'</select>'
+    +'<button onclick="this.parentElement.remove();calcGPA()" style="border:none;background:none;color:#94a3b8;cursor:pointer;font-size:18px;line-height:1;padding:0 4px" onmouseover="this.style.color=\'#990000\'" onmouseout="this.style.color=\'#94a3b8\'">×</button>';
+  document.getElementById('gpa-rows').appendChild(row);
+  calcGPA();
+}
+function calcGPA(){
+  var s=document.querySelectorAll('#gpa-rows select');
+  if(!s.length){document.getElementById('gpa-result').textContent='—';return;}
+  var sum=0;s.forEach(function(x){sum+=gradeMap[x.value]||0;});
+  document.getElementById('gpa-result').textContent=(sum/s.length).toFixed(2);
+}
+addGPARow();addGPARow();
+</script>
+</body>
+</html>
